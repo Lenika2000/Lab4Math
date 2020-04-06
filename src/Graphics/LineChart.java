@@ -16,9 +16,6 @@ import org.jfree.ui.RectangleInsets;
 
 import java.awt.*;
 
-import static Graphics.Dataset.*;
-
-
 public class LineChart extends ApplicationFrame {
     private static final long serialVersionUID = 1L;
     private String description;
