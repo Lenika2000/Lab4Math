@@ -111,8 +111,8 @@ public class TheBestApproximatingFunction {
         double min = 1000000;
         int k = 0;
         for (int i = 0; i < 5; i++) {
-            if (functions[0].getδ() < min) {
-                min = functions[0].getδ();
+            if (functions[i].getδ() < min) {
+                min = functions[i].getδ();
                 k = i;
             }
         }
