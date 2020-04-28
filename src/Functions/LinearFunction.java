@@ -6,22 +6,21 @@ public class LinearFunction extends Function {
     private double SY = 0;
     private double SXY = 0;
 
-    public LinearFunction(double[][] table) {
-        super(table);
+    public LinearFunction(double[] X, double [] Y) {
+        super(X,Y);
         init();
     }
 
     private void init() {
-        n = table[0].length;
         for (int i = 0; i < n; i++) {
-            SX = SX + table[0][i];
-            SXX = SXX + table[0][i] * table[0][i];
-            SY = SY + table[1][i];
-            SXY = SXY + table[0][i] * table[1][i];
+            SX = SX + X[i];
+            SXX = SXX + X[i] * X[i];
+            SY = SY + Y[i];
+            SXY = SXY + X[i] * Y[i];
         }
         countA();
         countB();
-        super.countFANDParam((Double x) -> a * x + b);
+        countFANDParam((Double x) -> a * x + b);
     }
 
     private void countA() {

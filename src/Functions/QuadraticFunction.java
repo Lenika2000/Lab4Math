@@ -14,25 +14,23 @@ public class QuadraticFunction extends Function {
 
     private double[][] matrix = new double[3][4];
 
-    public QuadraticFunction(double[][] table) {
-        super(table);
+    public QuadraticFunction(double[] X, double [] Y) {
+        super(X,Y);
         init();
     }
-
+//вид F=ax^2+bx+c
     private void init() {
-        n = table[0].length;
         for (int i = 0; i < n; i++) {
-            SX = SX + table[0][i];
-            SXX = SXX + table[0][i] * table[0][i];
-            SXXX = SXXX + table[0][i] * table[0][i] * table[0][i];
-            SXXXX = SXXXX + table[0][i] * table[0][i] * table[0][i] * table[0][i];
-            SY = SY + table[1][i];
-            SXY = SXY + table[0][i] * table[1][i];
-            SXXY = SXXY + table[0][i] * table[0][i] * table[1][i];
+            SX = SX + X[i];
+            SXX = SXX + X[i] * X[i];
+            SXXX = SXXX + X[i] * X[i]* X[i];
+            SXXXX = SXXXX + X[i] * X[i] * X[i] * X[i];
+            SY = SY + Y[i];
+            SXY = SXY + X[i] * Y[i];
+            SXXY = SXXY + X[i] * X[i] * Y[i];
         }
         countABC();
         countFANDParam((Double x) -> a * x * x + b * x + c);
-
     }
 
     private void countABC() {
@@ -50,9 +48,9 @@ public class QuadraticFunction extends Function {
         matrix[2][3] = SXXY;
         GaussMethod gaussMethod = new GaussMethod(matrix);
         double[] answer = gaussMethod.getAnswer();
-        a = answer[2];
-        b = answer[1];
-        c = answer[0];
+        a = answer[2];//аналог а2
+        b = answer[1];//аналог а1
+        c = answer[0];//аналог а0
     }
 
 }

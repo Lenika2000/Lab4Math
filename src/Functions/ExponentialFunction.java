@@ -7,18 +7,17 @@ public class ExponentialFunction extends Function {
     private double SLNYX = 0;
 
 
-    public ExponentialFunction(double[][] table) {
-        super(table);
+    public ExponentialFunction(double[] X, double [] Y) {
+        super(X,Y);
         init();
     }
 
     private void init() {
-        n = table[0].length;
         for (int i = 0; i < n; i++) {
-            SX = SX + table[0][i];
-            SXX = SXX + table[0][i] * table[0][i];
-            SLNY = SLNY + Math.log(table[1][i]);
-            SLNYX = SLNYX + Math.log(table[1][i]) * table[0][i];
+            SX = SX + X[i];
+            SXX = SXX + X[i] * X[i];
+            SLNY = SLNY + Math.log(Y[i]);
+            SLNYX = SLNYX + Math.log(Y[i]) * X[i];
         }
         countA();
         countB();

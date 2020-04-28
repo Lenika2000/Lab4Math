@@ -6,18 +6,17 @@ public class PowerFunction extends Function {
     private double SLNYLNX = 0;
     private double SLNXLNX = 0;
 
-    public PowerFunction(double[][] table) {
-        super(table);
+    public PowerFunction(double[] X, double [] Y) {
+        super(X,Y);
         init();
     }
 
     private void init() {
-        n = table[0].length;
         for (int i = 0; i < n; i++) {
-            SLNY = SLNY + Math.log(table[1][i]);
-            SLNX = SLNX + Math.log(table[0][i]);
-            SLNYLNX = SLNYLNX + Math.log(table[1][i]) * Math.log(table[0][i]);
-            SLNXLNX = SLNXLNX + Math.log(table[0][i]) * Math.log(table[0][i]);
+            SLNY = SLNY + Math.log(Y[i]);
+            SLNX = SLNX + Math.log(X[i]);
+            SLNYLNX = SLNYLNX + Math.log(Y[i]) * Math.log(X[i]);
+            SLNXLNX = SLNXLNX + Math.log(X[i]) * Math.log(X[i]);
         }
         countA();
         countB();

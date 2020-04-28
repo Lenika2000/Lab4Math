@@ -6,18 +6,17 @@ public class LogarithmicFunction extends Function {
     private double SLNXLNX = 0;
     private double SYLNX = 0;
 
-    public LogarithmicFunction(double[][] table) {
-        super(table);
+    public LogarithmicFunction(double[] X, double [] Y) {
+        super(X,Y);
         init();
     }
-
+   //вид F=alnx+b
     private void init() {
-        n = table[0].length;
         for (int i = 0; i < n; i++) {
-            SY = SY + table[1][i];
-            SLNX = SLNX + Math.log(table[0][i]);
-            SLNXLNX = SLNXLNX + Math.log(table[0][i]) * Math.log(table[0][i]);
-            SYLNX = SYLNX + table[1][i] * Math.log(table[0][i]);
+            SY = SY + Y[i];
+            SLNX = SLNX + Math.log(X[i]);
+            SLNXLNX = SLNXLNX + Math.log(X[i]) * Math.log(X[i]);
+            SYLNX = SYLNX + Y[i] * Math.log(X[i]);
         }
         countA();
         countB();
@@ -25,11 +24,11 @@ public class LogarithmicFunction extends Function {
     }
 
     private void countA() {
-        a = (SY * SLNXLNX - SYLNX * SLNX) / (n * SLNXLNX - SLNX * SLNX);
+        a = (n * SYLNX - SY * SLNX) / (n * SLNXLNX - SLNX * SLNX);
     }
 
     private void countB() {
-        b = (n * SYLNX - SY * SLNX) / (n * SLNXLNX - SLNX * SLNX);
+        b = (SY * SLNXLNX - SYLNX * SLNX) / (n * SLNXLNX - SLNX * SLNX);
     }
 
 }

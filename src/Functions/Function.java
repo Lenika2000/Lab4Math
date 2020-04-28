@@ -1,7 +1,8 @@
 package Functions;
 
 public class Function {
-    double[][] table;
+    protected double[] X;
+    protected double[] Y;
     protected int n;
     protected double a;
     protected double b;
@@ -10,18 +11,19 @@ public class Function {
     protected double S = 0;
     protected double δ;
 
-    public Function(double[][] table) {
-        this.table = table;
-        n = table[0].length;
-        f = new double[n];
+    public Function(double[] X, double [] Y) {
+        this.X = X;
+        this.Y =Y;
+        n = X.length;
+        f = new double[n];//значения аппроксимирующей функции в точках х
     }
 
     protected void countFANDParam(java.util.function.Function<Double, Double> fun) {
-        for (int i = 0; i < table[0].length; i++) {
-            f[i] = fun.apply(table[0][i]);
-            S = S + Math.pow(f[i] - table[1][i], 2);
+        for (int i = 0; i < n; i++) {
+            f[i] = fun.apply(X[i]);
+            S = S + Math.pow(f[i] - Y[i], 2); //подсчет критерия минимизации
         }
-        δ = Math.sqrt(S / n);
+        δ = Math.sqrt(S / n); //подсчет среднекрадратичного отклонения
     }
 
     public double[] getF() {
